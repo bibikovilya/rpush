@@ -127,6 +127,7 @@ module Rpush
         ssl_context = OpenSSL::SSL::SSLContext.new
         ssl_context.key = OpenSSL::PKey::RSA.new(@certificate, @password)
         ssl_context.cert = OpenSSL::X509::Certificate.new(@certificate)
+        ssl_context.ca_file = ENV['RPUSH_CA_FILE'] if ENV.has_key?('RPUSH_CA_FILE')
         ssl_context
       end
 
